@@ -7,7 +7,7 @@
 #include "naunet_timer.h"
 
 int main() {
-    int nsystem      = 64;
+    int nsystem      = 2048;
     double spy       = 86400.0 * 365.0;
 
     double nH        = 2e4;
@@ -48,9 +48,13 @@ int main() {
     }
 
     Naunet naunet;
-    naunet.Init();
+    if (naunet.Init() == NAUNET_FAIL) {
+        printf("Initialize Fail\n");
+    }
 
-    naunet.Reset(nsystem);
+    if (naunet.Reset(nsystem) == NAUNET_FAIL) {
+        printf("Reset Fail\n");
+    }
 
     double *y = new double[nsystem * NEQUATIONS];
     for (int isys = 0; isys < nsystem; isys++) {
@@ -83,7 +87,7 @@ int main() {
     // double rates[NREACTIONS];
 #endif
 
-    double logtstart = 3.0, logtend = 8.0;
+    double logtstart = 2.0, logtend = 3.0;
     double dtyr = 0.0, time = 0.0;
     for (double logtime = logtstart; logtime < logtend; logtime += 0.1) {
 #ifdef NAUNET_DEBUG

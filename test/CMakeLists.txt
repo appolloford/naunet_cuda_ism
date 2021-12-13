@@ -29,6 +29,8 @@ if("CUDA" IN_LIST languages)
     )
 endif()
 
+message(STATUS "Test targets               = ${TESTTARGETS}")
+
 foreach(name ${TESTTARGETS})
 
     set(targetname test_${name})

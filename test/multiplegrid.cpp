@@ -77,8 +77,8 @@ int main() {
         y[isys * NEQUATIONS + IDX_GRAIN0I] = 1.3e-12 * nH;
     }
 
-    FILE *fbin = fopen("evolution_parallel.bin", "w");
-    FILE *ftxt = fopen("evolution_parallel.txt", "w");
+    FILE *fbin = fopen("evolution_multiplegrid.bin", "w");
+    FILE *ftxt = fopen("evolution_multiplegrid.txt", "w");
     FILE *ttxt = fopen("time_parallel.txt", "w");
 
 #ifdef NAUNET_DEBUG
@@ -87,7 +87,7 @@ int main() {
     // double rates[NREACTIONS];
 #endif
 
-    double logtstart = 2.0, logtend = 3.0;
+    double logtstart = 2.0, logtend = 4.0;
     double dtyr = 0.0, time = 0.0;
     for (double logtime = logtstart; logtime < logtend; logtime += 0.1) {
 #ifdef NAUNET_DEBUG
@@ -148,7 +148,9 @@ int main() {
     // fclose(rtxt);
 #endif
 
-    naunet.Finalize();
+    if (naunet.Finalize() == NAUNET_FAIL) {
+        printf("Finalize Fail\n");
+    }
 
     delete[] data;
     delete[] y;

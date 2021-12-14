@@ -52,7 +52,7 @@ int main() {
         printf("Initialize Fail\n");
     }
 
-    if (naunet.Reset(nsystem) == NAUNET_FAIL) {
+    if (naunet.Reset(nsystem, 1e-15, 1e-3, 1000) == NAUNET_FAIL) {
         printf("Reset Fail\n");
     }
 

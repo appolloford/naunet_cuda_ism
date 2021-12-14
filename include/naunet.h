@@ -23,10 +23,10 @@ class Naunet {
    public:
     Naunet();
     ~Naunet();
-    int Init(int nsystem = MAX_NSYSTEMS, double atol = 1e-20, double rtol = 1e-5);
+    int Init(int nsystem = MAX_NSYSTEMS, double atol = 1e-20, double rtol = 1e-5, int mxsteps=500);
     int Finalize();
     /* */
-    int Reset(int nsystem = MAX_NSYSTEMS, double atol = 1e-20, double rtol = 1e-5);
+    int Reset(int nsystem = MAX_NSYSTEMS, double atol = 1e-20, double rtol = 1e-5, int mxsteps=500);
     /* */
     int Solve(realtype *ab, realtype dt, NaunetData *data);
 #ifdef PYMODULE
@@ -36,6 +36,8 @@ class Naunet {
 
    private:
     int n_system_;
+    int mxsteps_;
+    int n_stream_in_use_;
     realtype atol_;
     realtype rtol_;
 
@@ -61,11 +63,13 @@ PYBIND11_MODULE(PYMODNAME, m) {
     py::class_<Naunet>(m, "Naunet")
         .def(py::init())
         .def("Init", &Naunet::Init, py::arg("nsystem") = 1,
-             py::arg("atol") = 1e-20, py::arg("rtol") = 1e-5)
+             py::arg("atol") = 1e-20, py::arg("rtol") = 1e-5,
+             py:arg("mxsteps") = 500)
         .def("Finalize", &Naunet::Finalize)
 #ifdef USE_CUDA
         .def("Reset", &Naunet::Reset, py::arg("nsystem") = 1,
-             py::arg("atol") = 1e-20, py::arg("rtol") = 1e-5)
+             py::arg("atol") = 1e-20, py::arg("rtol") = 1e-5,
+             py:arg("mxsteps") = 500)
 #endif
         .def("Solve", &Naunet::PyWrapSolve);
 

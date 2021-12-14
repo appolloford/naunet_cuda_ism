@@ -48,7 +48,7 @@ int main() {
     naunet.Init();
 
 #ifdef USE_CUDA
-    naunet.Reset(1);
+    naunet.Reset(1, 1e-15, 1e-3, 1000);
 #endif
 
     double y[NEQUATIONS] = {0.0};

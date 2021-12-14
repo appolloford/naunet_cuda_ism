@@ -64,12 +64,12 @@ PYBIND11_MODULE(PYMODNAME, m) {
         .def(py::init())
         .def("Init", &Naunet::Init, py::arg("nsystem") = 1,
              py::arg("atol") = 1e-20, py::arg("rtol") = 1e-5,
-             py:arg("mxsteps") = 500)
+             py::arg("mxsteps") = 500)
         .def("Finalize", &Naunet::Finalize)
 #ifdef USE_CUDA
         .def("Reset", &Naunet::Reset, py::arg("nsystem") = 1,
              py::arg("atol") = 1e-20, py::arg("rtol") = 1e-5,
-             py:arg("mxsteps") = 500)
+             py::arg("mxsteps") = 500)
 #endif
         .def("Solve", &Naunet::PyWrapSolve);
 

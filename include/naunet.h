@@ -24,6 +24,7 @@ class Naunet {
     Naunet();
     ~Naunet();
     int Init(int nsystem = MAX_NSYSTEMS, double atol = 1e-20, double rtol = 1e-5, int mxsteps=500);
+    int DebugInfo();
     int Finalize();
     /* */
     int Reset(int nsystem = MAX_NSYSTEMS, double atol = 1e-20, double rtol = 1e-5, int mxsteps=500);
@@ -37,11 +38,12 @@ class Naunet {
    private:
     int n_system_;
     int mxsteps_;
-    int n_stream_in_use_;
     realtype atol_;
     realtype rtol_;
 
     /* */
+
+    int n_stream_in_use_;
 
     N_Vector cv_y_[NSTREAMS];
     SUNMatrix cv_a_[NSTREAMS];
@@ -53,6 +55,10 @@ class Naunet {
     cudaStream_t custream_[NSTREAMS];
     SUNCudaThreadDirectExecPolicy *stream_exec_policy_[NSTREAMS];
     SUNCudaBlockReduceExecPolicy *reduce_exec_policy_[NSTREAMS];
+
+    // pinned host memory, required by cuda stream
+    realtype *h_ab;
+    NaunetData *h_data;
 
     /*  */
 };

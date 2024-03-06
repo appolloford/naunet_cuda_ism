@@ -1,6 +1,6 @@
+// 
 // clang-format off
 #include "naunet_constants.h"
-
 __constant__ double pi              = 3.1415926;
 
 // atomic mass unit (g)
@@ -27,200 +27,200 @@ __constant__ double echarge         = 4.80320425e-10;
 // Boltzmann constant (erg/K)
 __constant__ double kerg            = 1.380658e-16;
 
-__constant__ double gism            = 0.0016;
-__constant__ double habing          = 100000000.0;
-__constant__ double zism            = 1.3e-17;
-__constant__ double crphot          = 10000.0;
+// reduced Planck constant
 __constant__ double hbar            = 1.054571726e-27;
-__constant__ double eb_GCI          = 800.0;
-__constant__ double eb_GC10I        = 8000.0;
-__constant__ double eb_GC10HI       = 8537.0;
-__constant__ double eb_GC10H2I      = 8987.0;
-__constant__ double eb_GC11I        = 8800.0;
-__constant__ double eb_GC2I         = 1600.0;
-__constant__ double eb_GC2HI        = 2137.0;
-__constant__ double eb_GC2H2I       = 2587.0;
-__constant__ double eb_GC2H3I       = 3037.0;
-__constant__ double eb_GC2H4I       = 3487.0;
-__constant__ double eb_GC2H4CNI     = 5930.0;
-__constant__ double eb_GC2H5I       = 3937.0;
-__constant__ double eb_GC2H5CNI     = 6380.0;
-__constant__ double eb_GC2H5OHI     = 5200.0;
-__constant__ double eb_GC2H6I       = 2300.0;
-__constant__ double eb_GC2NI        = 2400.0;
-__constant__ double eb_GC2OI        = 1950.0;
-__constant__ double eb_GC2SI        = 5320.0;
-__constant__ double eb_GC3I         = 2400.0;
-__constant__ double eb_GC3HI        = 2937.0;
-__constant__ double eb_GC3H2I       = 3387.0;
-__constant__ double eb_GC3NI        = 3200.0;
-__constant__ double eb_GC3OI        = 2750.0;
-__constant__ double eb_GC3PI        = 1650.0;
-__constant__ double eb_GC3SI        = 3500.0;
-__constant__ double eb_GC4I         = 3200.0;
-__constant__ double eb_GC4HI        = 3737.0;
-__constant__ double eb_GC4H2I       = 4187.0;
-__constant__ double eb_GC4H3I       = 4637.0;
-__constant__ double eb_GC4H6I       = 5987.0;
-__constant__ double eb_GC4NI        = 4000.0;
-__constant__ double eb_GC4PI        = 1950.0;
-__constant__ double eb_GC4SI        = 4300.0;
-__constant__ double eb_GC5I         = 4000.0;
-__constant__ double eb_GC5HI        = 4537.0;
-__constant__ double eb_GC5H2I       = 4987.0;
-__constant__ double eb_GC5NI        = 4800.0;
-__constant__ double eb_GC6I         = 4800.0;
-__constant__ double eb_GC6HI        = 5337.0;
-__constant__ double eb_GC6H2I       = 5787.0;
-__constant__ double eb_GC6H6I       = 7587.0;
-__constant__ double eb_GC7I         = 5600.0;
-__constant__ double eb_GC7HI        = 6137.0;
-__constant__ double eb_GC7H2I       = 6587.0;
-__constant__ double eb_GC7NI        = 6400.0;
-__constant__ double eb_GC8I         = 6400.0;
-__constant__ double eb_GC8HI        = 6937.0;
-__constant__ double eb_GC8H2I       = 7387.0;
-__constant__ double eb_GC9I         = 7200.0;
-__constant__ double eb_GC9HI        = 7737.0;
-__constant__ double eb_GC9H2I       = 8187.0;
-__constant__ double eb_GC9NI        = 8000.0;
-__constant__ double eb_GCCPI        = 1350.0;
-__constant__ double eb_GCClI        = 1150.0;
-__constant__ double eb_GCHI         = 873.0;
-__constant__ double eb_GCH2I        = 945.0;
-__constant__ double eb_GCH2CCHI     = 3837.0;
-__constant__ double eb_GCH2CCH2I    = 4287.0;
-__constant__ double eb_GCH2CHCCHI   = 5087.0;
-__constant__ double eb_GCH2CHCNI    = 5480.0;
-__constant__ double eb_GCH2CNI      = 4230.0;
-__constant__ double eb_GCH2COI      = 2200.0;
-__constant__ double eb_GCH2NHI      = 3428.0;
-__constant__ double eb_GCH2OHI      = 4330.0;
-__constant__ double eb_GCH2OHCHOI   = 6680.0;
-__constant__ double eb_GCH2OHCOI    = 6230.0;
-__constant__ double eb_GCH2PHI      = 1200.0;
-__constant__ double eb_GCH3I        = 1018.0;
-__constant__ double eb_GCH3C3NI     = 6480.0;
-__constant__ double eb_GCH3C4HI     = 5887.0;
-__constant__ double eb_GCH3C5NI     = 7880.0;
-__constant__ double eb_GCH3C6HI     = 7487.0;
-__constant__ double eb_GCH3C7NI     = 9480.0;
-__constant__ double eb_GCH3CCHI     = 4287.0;
-__constant__ double eb_GCH3CHCH2I   = 5187.0;
-__constant__ double eb_GCH3CHOI     = 3800.0;
-__constant__ double eb_GCH3CNI      = 4680.0;
-__constant__ double eb_GCH3COI      = 2320.0;
-__constant__ double eb_GCH3COCH3I   = 3300.0;
-__constant__ double eb_GCH3COOHI    = 6300.0;
-__constant__ double eb_GCH3OI       = 2655.0;
-__constant__ double eb_GCH3OCH3I    = 3300.0;
-__constant__ double eb_GCH3OHI      = 4930.0;
-__constant__ double eb_GCH4I        = 1090.0;
-__constant__ double eb_GCNI         = 1600.0;
-__constant__ double eb_GCNOI        = 2400.0;
-__constant__ double eb_GCOI         = 855.0;
-__constant__ double eb_GCO2I        = 2990.0;
-__constant__ double eb_GCOOCH3I     = 3650.0;
-__constant__ double eb_GCOOHI       = 5120.0;
-__constant__ double eb_GCPI         = 1050.0;
-__constant__ double eb_GCSI         = 1900.0;
-__constant__ double eb_GClI         = 850.0;
-__constant__ double eb_GClOI        = 1250.0;
-__constant__ double eb_GFI          = 450.0;
-__constant__ double eb_GFeI         = 4200.0;
-__constant__ double eb_GHI          = 600.0;
-__constant__ double eb_GH2I         = 430.0;
-__constant__ double eb_GH2CCCI      = 2110.0;
-__constant__ double eb_GH2CNI       = 2400.0;
-__constant__ double eb_GH2COI       = 2050.0;
-__constant__ double eb_GH2CSI       = 2700.0;
-__constant__ double eb_GH2OI        = 5770.0;
-__constant__ double eb_GH2O2I       = 5700.0;
-__constant__ double eb_GH2SI        = 2743.0;
-__constant__ double eb_GH2S2I       = 3100.0;
-__constant__ double eb_GH2SiOI      = 1200.0;
-__constant__ double eb_GHC2OI       = 2400.0;
-__constant__ double eb_GHC2PI       = 1400.0;
-__constant__ double eb_GHC3NI       = 4580.0;
-__constant__ double eb_GHC5NI       = 6180.0;
-__constant__ double eb_GHC7NI       = 7780.0;
-__constant__ double eb_GHC9NI       = 9380.0;
-__constant__ double eb_GHCCNI       = 3780.0;
-__constant__ double eb_GHCNI        = 3610.0;
-__constant__ double eb_GHCNOI       = 2850.0;
-__constant__ double eb_GHCOI        = 1600.0;
-__constant__ double eb_GHCOOCH3I    = 4000.0;
-__constant__ double eb_GHCOOHI      = 5000.0;
-__constant__ double eb_GHCPI        = 1100.0;
-__constant__ double eb_GHCSI        = 2350.0;
-__constant__ double eb_GHCSiI       = 1050.0;
-__constant__ double eb_GHClI        = 900.0;
-__constant__ double eb_GHFI         = 500.0;
-__constant__ double eb_GHNCI        = 2050.0;
-__constant__ double eb_GHNC3I       = 4580.0;
-__constant__ double eb_GHNCOI       = 2850.0;
-__constant__ double eb_GHNOI        = 2050.0;
-__constant__ double eb_GHNSiI       = 1100.0;
-__constant__ double eb_GHOCNI       = 2850.0;
-__constant__ double eb_GHONCI       = 2850.0;
-__constant__ double eb_GHPOI        = 1200.0;
-__constant__ double eb_GHSI         = 1500.0;
-__constant__ double eb_GHS2I        = 2650.0;
-__constant__ double eb_GHeI         = 100.0;
-__constant__ double eb_GMgI         = 5300.0;
-__constant__ double eb_GNI          = 800.0;
-__constant__ double eb_GN2I         = 790.0;
-__constant__ double eb_GN2OI        = 2400.0;
-__constant__ double eb_GNCCNI       = 1300.0;
-__constant__ double eb_GNHI         = 1577.0;
-__constant__ double eb_GNH2I        = 2354.0;
-__constant__ double eb_GNH2CNI      = 1200.0;
-__constant__ double eb_GNH3I        = 3130.0;
-__constant__ double eb_GNOI         = 1600.0;
-__constant__ double eb_GNO2I        = 2400.0;
-__constant__ double eb_GNSI         = 1900.0;
-__constant__ double eb_GNaI         = 11800.0;
-__constant__ double eb_GOI          = 800.0;
-__constant__ double eb_GO2I         = 1000.0;
-__constant__ double eb_GO2HI        = 3650.0;
-__constant__ double eb_GOCNI        = 2400.0;
-__constant__ double eb_GOCSI        = 2888.0;
-__constant__ double eb_GOHI         = 2850.0;
-__constant__ double eb_GPI          = 750.0;
-__constant__ double eb_GPHI         = 800.0;
-__constant__ double eb_GPH2I        = 850.0;
-__constant__ double eb_GPNI         = 1100.0;
-__constant__ double eb_GPOI         = 1150.0;
-__constant__ double eb_GSI          = 1100.0;
-__constant__ double eb_GS2I         = 2200.0;
-__constant__ double eb_GSOI         = 2600.0;
-__constant__ double eb_GSO2I        = 5330.0;
-__constant__ double eb_GSiI         = 2700.0;
-__constant__ double eb_GSiCI        = 3500.0;
-__constant__ double eb_GSiC2I       = 1300.0;
-__constant__ double eb_GSiC2HI      = 1350.0;
-__constant__ double eb_GSiC2H2I     = 1400.0;
-__constant__ double eb_GSiC3I       = 1600.0;
-__constant__ double eb_GSiC3HI      = 1650.0;
-__constant__ double eb_GSiC4I       = 1900.0;
-__constant__ double eb_GSiCH2I      = 1100.0;
-__constant__ double eb_GSiCH3I      = 1150.0;
-__constant__ double eb_GSiHI        = 3150.0;
-__constant__ double eb_GSiH2I       = 3600.0;
-__constant__ double eb_GSiH3I       = 4050.0;
-__constant__ double eb_GSiH4I       = 4500.0;
-__constant__ double eb_GSiNI        = 3500.0;
-__constant__ double eb_GSiNCI       = 1350.0;
-__constant__ double eb_GSiOI        = 3500.0;
-__constant__ double eb_GSiO2I       = 4300.0;
-__constant__ double eb_GSiSI        = 3800.0;
 
+__constant__ double gism = 0.0016;
+__constant__ double zism = 1.3e-17;
+__constant__ double habing = 100000000.0;
+__constant__ double crphot = 10000.0;
 
+__constant__ double eb_GFeI = 4200.0;
+__constant__ double eb_GHeI = 100.0;
+__constant__ double eb_GMgI = 5300.0;
+__constant__ double eb_GNaI = 11800.0;
+__constant__ double eb_GH2S2I = 3100.0;
+__constant__ double eb_GC4H6I = 5987.0;
+__constant__ double eb_GC4SI = 4300.0;
+__constant__ double eb_GCClI = 1150.0;
+__constant__ double eb_GCH3C3NI = 6480.0;
+__constant__ double eb_GCH3C4HI = 5887.0;
+__constant__ double eb_GCH3C5NI = 7880.0;
+__constant__ double eb_GCH3C6HI = 7487.0;
+__constant__ double eb_GCH3C7NI = 9480.0;
+__constant__ double eb_GClOI = 1250.0;
+__constant__ double eb_GHC2PI = 1400.0;
+__constant__ double eb_GHClI = 900.0;
+__constant__ double eb_GHFI = 500.0;
+__constant__ double eb_GHNSiI = 1100.0;
+__constant__ double eb_GHPOI = 1200.0;
+__constant__ double eb_GNH2CNI = 1200.0;
+__constant__ double eb_GNO2I = 2400.0;
+__constant__ double eb_GPNI = 1100.0;
+__constant__ double eb_GSiC3HI = 1650.0;
+__constant__ double eb_GSiCH3I = 1150.0;
+__constant__ double eb_GSiO2I = 4300.0;
+__constant__ double eb_GSiSI = 3800.0;
+__constant__ double eb_GFI = 450.0;
+__constant__ double eb_GH2SiOI = 1200.0;
+__constant__ double eb_GNCCNI = 1300.0;
+__constant__ double eb_GS2I = 2200.0;
+__constant__ double eb_GSiC2HI = 1350.0;
+__constant__ double eb_GC3SI = 3500.0;
+__constant__ double eb_GC4NI = 4000.0;
+__constant__ double eb_GC4PI = 1950.0;
+__constant__ double eb_GCH2PHI = 1200.0;
+__constant__ double eb_GCH3CHCH2I = 5187.0;
+__constant__ double eb_GCH3COOHI = 6300.0;
+__constant__ double eb_GH2SI = 2743.0;
+__constant__ double eb_GHCNOI = 2850.0;
+__constant__ double eb_GHCPI = 1100.0;
+__constant__ double eb_GHNC3I = 4580.0;
+__constant__ double eb_GHNCOI = 2850.0;
+__constant__ double eb_GHOCNI = 2850.0;
+__constant__ double eb_GHONCI = 2850.0;
+__constant__ double eb_GHS2I = 2650.0;
+__constant__ double eb_GN2OI = 2400.0;
+__constant__ double eb_GPH2I = 850.0;
+__constant__ double eb_GPOI = 1150.0;
+__constant__ double eb_GSiC2H2I = 1400.0;
+__constant__ double eb_GSiC4I = 1900.0;
+__constant__ double eb_GSiNCI = 1350.0;
+__constant__ double eb_GC3PI = 1650.0;
+__constant__ double eb_GC6H6I = 7587.0;
+__constant__ double eb_GH2O2I = 5700.0;
+__constant__ double eb_GHCSiI = 1050.0;
+__constant__ double eb_GPHI = 800.0;
+__constant__ double eb_GSO2I = 5330.0;
+__constant__ double eb_GSiH4I = 4500.0;
+__constant__ double eb_GC2H4CNI = 5930.0;
+__constant__ double eb_GC2SI = 5320.0;
+__constant__ double eb_GC3OI = 2750.0;
+__constant__ double eb_GC4H3I = 4637.0;
+__constant__ double eb_GC7H2I = 6587.0;
+__constant__ double eb_GC8H2I = 7387.0;
+__constant__ double eb_GC9H2I = 8187.0;
+__constant__ double eb_GCH2CNI = 4230.0;
+__constant__ double eb_GCH3CNI = 4680.0;
+__constant__ double eb_GH2CNI = 2400.0;
+__constant__ double eb_GH2CSI = 2700.0;
+__constant__ double eb_GHC2OI = 2400.0;
+__constant__ double eb_GHC5NI = 6180.0;
+__constant__ double eb_GHC7NI = 7780.0;
+__constant__ double eb_GHC9NI = 9380.0;
+__constant__ double eb_GHCCNI = 3780.0;
+__constant__ double eb_GHCSI = 2350.0;
+__constant__ double eb_GSiC3I = 1600.0;
+__constant__ double eb_GSiH3I = 4050.0;
+__constant__ double eb_GSiNI = 3500.0;
+__constant__ double eb_GSiOI = 3500.0;
+__constant__ double eb_GC2H6I = 2300.0;
+__constant__ double eb_GC3H2I = 3387.0;
+__constant__ double eb_GC5H2I = 4987.0;
+__constant__ double eb_GCCPI = 1350.0;
+__constant__ double eb_GCH2CHCCHI = 5087.0;
+__constant__ double eb_GCH3COCH3I = 3300.0;
+__constant__ double eb_GCH3OCH3I = 3300.0;
+__constant__ double eb_GClI = 850.0;
+__constant__ double eb_GSiCH2I = 1100.0;
+__constant__ double eb_GSiHI = 3150.0;
+__constant__ double eb_GSiH2I = 3600.0;
+__constant__ double eb_GC10H2I = 8987.0;
+__constant__ double eb_GC4H2I = 4187.0;
+__constant__ double eb_GCH2CHCNI = 5480.0;
+__constant__ double eb_GH2CCCI = 2110.0;
+__constant__ double eb_GHC3NI = 4580.0;
+__constant__ double eb_GOCSI = 2888.0;
+__constant__ double eb_GC2H5CNI = 6380.0;
+__constant__ double eb_GC2H5OHI = 5200.0;
+__constant__ double eb_GC2OI = 1950.0;
+__constant__ double eb_GC6H2I = 5787.0;
+__constant__ double eb_GC9NI = 8000.0;
+__constant__ double eb_GCO2I = 2990.0;
+__constant__ double eb_GCPI = 1050.0;
+__constant__ double eb_GO2HI = 3650.0;
+__constant__ double eb_GOCNI = 2400.0;
+__constant__ double eb_GSOI = 2600.0;
+__constant__ double eb_GSiCI = 3500.0;
+__constant__ double eb_GC11I = 8800.0;
+__constant__ double eb_GC2NI = 2400.0;
+__constant__ double eb_GCH2CCH2I = 4287.0;
+__constant__ double eb_GCH2NHI = 3428.0;
+__constant__ double eb_GCH3CCHI = 4287.0;
+__constant__ double eb_GCNOI = 2400.0;
+__constant__ double eb_GHNCI = 2050.0;
+__constant__ double eb_GNSI = 1900.0;
+__constant__ double eb_GSiC2I = 1300.0;
+__constant__ double eb_GCH2CCHI = 3837.0;
+__constant__ double eb_GCH2COI = 2200.0;
+__constant__ double eb_GHNOI = 2050.0;
+__constant__ double eb_GN2I = 790.0;
+__constant__ double eb_GC5NI = 4800.0;
+__constant__ double eb_GPI = 750.0;
+__constant__ double eb_GC2H5I = 3937.0;
+__constant__ double eb_GC3NI = 3200.0;
+__constant__ double eb_GC7NI = 6400.0;
+__constant__ double eb_GCOOCH3I = 3650.0;
+__constant__ double eb_GHCNI = 3610.0;
+__constant__ double eb_GNH3I = 3130.0;
+__constant__ double eb_GC10I = 8000.0;
+__constant__ double eb_GC10HI = 8537.0;
+__constant__ double eb_GC8HI = 6937.0;
+__constant__ double eb_GCH2OHCOI = 6230.0;
+__constant__ double eb_GCOOHI = 5120.0;
+__constant__ double eb_GO2I = 1000.0;
+__constant__ double eb_GC2H4I = 3487.0;
+__constant__ double eb_GC9I = 7200.0;
+__constant__ double eb_GC9HI = 7737.0;
+__constant__ double eb_GCSI = 1900.0;
+__constant__ double eb_GHSI = 1500.0;
+__constant__ double eb_GCH2OHCHOI = 6680.0;
+__constant__ double eb_GHCOOHI = 5000.0;
+__constant__ double eb_GC2H2I = 2587.0;
+__constant__ double eb_GC5I = 4000.0;
+__constant__ double eb_GC7HI = 6137.0;
+__constant__ double eb_GCH3COI = 2320.0;
+__constant__ double eb_GHCOOCH3I = 4000.0;
+__constant__ double eb_GC6I = 4800.0;
+__constant__ double eb_GC8I = 6400.0;
+__constant__ double eb_GCH2OHI = 4330.0;
+__constant__ double eb_GCH3OHI = 4930.0;
+__constant__ double eb_GC3HI = 2937.0;
+__constant__ double eb_GC4HI = 3737.0;
+__constant__ double eb_GC5HI = 4537.0;
+__constant__ double eb_GC6HI = 5337.0;
+__constant__ double eb_GC2H3I = 3037.0;
+__constant__ double eb_GCH3OI = 2655.0;
+__constant__ double eb_GH2OI = 5770.0;
+__constant__ double eb_GC7I = 5600.0;
+__constant__ double eb_GSiI = 2700.0;
+__constant__ double eb_GC4I = 3200.0;
+__constant__ double eb_GCH3CHOI = 3800.0;
+__constant__ double eb_GH2COI = 2050.0;
+__constant__ double eb_GNOI = 1600.0;
+__constant__ double eb_GCH4I = 1090.0;
+__constant__ double eb_GC2HI = 2137.0;
+__constant__ double eb_GNH2I = 2354.0;
+__constant__ double eb_GHCOI = 1600.0;
+__constant__ double eb_GNHI = 1577.0;
+__constant__ double eb_GSI = 1100.0;
+__constant__ double eb_GC3I = 2400.0;
+__constant__ double eb_GOHI = 2850.0;
+__constant__ double eb_GCOI = 855.0;
+__constant__ double eb_GCH2I = 945.0;
+__constant__ double eb_GC2I = 1600.0;
+__constant__ double eb_GCNI = 1600.0;
+__constant__ double eb_GNI = 800.0;
+__constant__ double eb_GOI = 800.0;
+__constant__ double eb_GCH3I = 1018.0;
+__constant__ double eb_GCHI = 873.0;
+__constant__ double eb_GH2I = 430.0;
+__constant__ double eb_GCI = 800.0;
+__constant__ double eb_GHI = 600.0;
 
 // Table of H2 self-shielding factor (Walsh et al. 2015)
 // H2 column density
-__device__
-double H2ShieldingTableX[105] = 
+__device__ double H2ShieldingTableX[105] = 
 {0.000e+00, 3.690e+11, 3.715e+12, 3.948e+13, 1.233e+14, 
  2.536e+14, 4.342e+14, 6.653e+14, 6.689e+14, 9.075e+14, 
  1.234e+15, 1.631e+15, 2.105e+15, 2.363e+15, 2.899e+15, 
@@ -243,8 +243,7 @@ double H2ShieldingTableX[105] =
  3.303e+21, 3.497e+21, 3.722e+21, 3.983e+21, 4.283e+21, 
  4.644e+21, 5.127e+21, 5.945e+21, 8.205e+21, 1.015e+22};
 
-__device__
-double H2ShieldingTable[105] =
+__device__ double H2ShieldingTable[105] =
 {1.000e+00, 9.983e-01, 9.853e-01, 8.761e-01, 7.199e-01, 
  5.728e-01, 4.455e-01, 3.431e-01, 3.418e-01, 2.732e-01, 
  2.110e-01, 1.619e-01, 1.236e-01, 1.084e-01, 8.447e-02, 
@@ -269,13 +268,11 @@ double H2ShieldingTable[105] =
 
 // Table of CO self-shielding factor
 // Excitation temperature
-__device__
-double COShieldingTableX[5] = 
+__device__ double COShieldingTableX[5] = 
 {5.0, 20.0, 50.0, 100.0, 1000.0};
 
 // H2 column density
-__device__
-double COShieldingTableY[41] = 
+__device__ double COShieldingTableY[41] = 
 {1.000e+15, 1.585e+15, 2.512e+15, 3.981e+15, 6.310e+15, 1.000e+16, 1.585e+16,
  2.512e+16, 3.981e+16, 6.310e+16, 1.000e+17, 1.585e+17, 2.512e+17, 3.981e+17,
  6.310e+17, 1.000e+18, 1.585e+18, 2.512e+18, 3.981e+18, 6.310e+18, 1.000e+19,
@@ -284,8 +281,7 @@ double COShieldingTableY[41] =
  1.000e+22, 1.585e+22, 2.512e+22, 3.981e+22, 6.310e+22, 1.000e+23};
 
 // CO column density
-__device__
-double COShieldingTableZ[46] = 
+__device__ double COShieldingTableZ[46] = 
 {1.000e+10, 1.585e+10, 2.512e+10, 3.981e+10, 6.310e+10, 1.000e+11, 1.585e+11,
  2.512e+11, 3.981e+11, 6.310e+11, 1.000e+12, 1.585e+12, 2.512e+12, 3.981e+12,
  6.310e+12, 1.000e+13, 1.585e+13, 2.512e+13, 3.981e+13, 6.310e+13, 1.000e+14,
@@ -294,8 +290,7 @@ double COShieldingTableZ[46] =
  1.000e+17, 1.585e+17, 2.512e+17, 3.981e+17, 6.310e+17, 1.000e+18, 1.585e+18,
  2.512e+18, 3.981e+18, 6.310e+18, 1.000e+19};
 
-__device__
-double COShieldingTable[5][41][46] = 
+__device__ double COShieldingTable[5][41][46] = 
 {{{8.524e-01, 8.524e-01, 8.523e-01, 8.523e-01, 8.522e-01, 8.521e-01,
    8.519e-01, 8.515e-01, 8.510e-01, 8.502e-01, 8.489e-01, 8.468e-01,
    8.436e-01, 8.385e-01, 8.305e-01, 8.183e-01, 7.998e-01, 7.724e-01,
@@ -1943,13 +1938,11 @@ double COShieldingTable[5][41][46] =
 
 // Table of N2 self-shielding factor
 // Excitation temperature
-__device__
-double N2ShieldingTableX[5] = 
+__device__ double N2ShieldingTableX[5] = 
 {10.0, 30.0, 50.0, 100.0, 1000.0};
 
 // H2 column density
-__device__
-double N2ShieldingTableY[46] = 
+__device__ double N2ShieldingTableY[46] = 
 {1.000e+14, 1.585e+14, 2.512e+14, 3.981e+14, 6.310e+14, 1.000e+15, 1.585e+15,
  2.512e+15, 3.981e+15, 6.310e+15, 1.000e+16, 1.585e+16, 2.512e+16, 3.981e+16,
  6.310e+16, 1.000e+17, 1.585e+17, 2.512e+17, 3.981e+17, 6.310e+17, 1.000e+18,
@@ -1959,8 +1952,7 @@ double N2ShieldingTableY[46] =
  2.512e+22, 3.981e+22, 6.310e+22, 1.000e+23};
 
 // N2 column density
-__device__
-double N2ShieldingTableZ[46] = 
+__device__ double N2ShieldingTableZ[46] = 
 {1.000e+10, 1.585e+10, 2.512e+10, 3.981e+10, 6.310e+10, 1.000e+11, 1.585e+11,
  2.512e+11, 3.981e+11, 6.310e+11, 1.000e+12, 1.585e+12, 2.512e+12, 3.981e+12,
  6.310e+12, 1.000e+13, 1.585e+13, 2.512e+13, 3.981e+13, 6.310e+13, 1.000e+14,
@@ -1969,8 +1961,7 @@ double N2ShieldingTableZ[46] =
  1.000e+17, 1.585e+17, 2.512e+17, 3.981e+17, 6.310e+17, 1.000e+18, 1.585e+18,
  2.512e+18, 3.981e+18, 6.310e+18, 1.000e+19};
 
-__device__
-double N2ShieldingTable[5][46][46] = 
+__device__ double N2ShieldingTable[5][46][46] = 
 {{{9.375e-01, 9.374e-01, 9.372e-01, 9.369e-01, 9.364e-01, 9.356e-01,
    9.344e-01, 9.325e-01, 9.295e-01, 9.249e-01, 9.179e-01, 9.073e-01,
    8.918e-01, 8.693e-01, 8.379e-01, 7.956e-01, 7.414e-01, 6.762e-01,
@@ -3815,4 +3806,3 @@ double N2ShieldingTable[5][46][46] =
    5.245e-28, 4.586e-28, 3.836e-28, 3.080e-28, 2.391e-28, 1.791e-28,
    1.286e-28, 8.913e-29, 6.087e-29, 4.069e-29, 2.580e-29, 1.512e-29,
    8.077e-30, 3.838e-30, 1.515e-30, 4.391e-31}}};
-

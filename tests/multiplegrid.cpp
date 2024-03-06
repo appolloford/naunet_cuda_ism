@@ -1,4 +1,8 @@
+// 
 #include <stdio.h>
+
+#include <stdexcept>
+#include <vector>
 
 #include "naunet.h"
 #include "naunet_data.h"
@@ -10,13 +14,15 @@ int main() {
     int nsystem      = 2048;
     double spy       = 86400.0 * 365.0;
 
+    NaunetData *data = new NaunetData[nsystem];
+    //
     double nH        = 2e4;
     double zeta_cr   = 1.3e-17;
     double zeta_xr   = 0.0;
     double Tgas      = 10.0;
     double Tdust     = 10.0;
     double Av        = 10.0;
-    double G0        = 1.0;
+    double G0        = 4.0;
     double rG        = 1e-5;
     double omega     = 0.5;
     double barr      = 1.5e-8;
@@ -27,7 +33,6 @@ int main() {
     double Tcr       = 70.0;
     double branch    = 1e-2;
 
-    NaunetData *data = new NaunetData[nsystem];
     for (int isys = 0; isys < nsystem; isys++) {
         data[isys].nH      = nH;
         data[isys].zeta_cr = zeta_cr;
@@ -47,15 +52,18 @@ int main() {
         data[isys].branch  = branch;
     }
 
+
     Naunet naunet;
     if (naunet.Init() == NAUNET_FAIL) {
         printf("Initialize Fail\n");
+        return 1;
     }
 
     if (naunet.Reset(nsystem) == NAUNET_FAIL) {
-        printf("Reset Fail\n");
+        throw std::runtime_error("Fail to reset the number of systems");
     }
 
+    //
     double *y = new double[nsystem * NEQUATIONS];
     for (int isys = 0; isys < nsystem; isys++) {
         for (int i = 0; i < NEQUATIONS; i++) {
@@ -77,6 +85,7 @@ int main() {
         y[isys * NEQUATIONS + IDX_GRAIN0I] = 1.3e-12 * nH;
     }
 
+
     FILE *fbin = fopen("evolution_multiplegrid.bin", "w");
     FILE *ftxt = fopen("evolution_multiplegrid.txt", "w");
     FILE *ttxt = fopen("time_parallel.txt", "w");
@@ -87,9 +96,34 @@ int main() {
     // double rates[NREACTIONS];
 #endif
 
-    double logtstart = 2.0, logtend = 4.0;
-    double dtyr = 0.0, time = 0.0;
-    for (double logtime = logtstart; logtime < logtend; logtime += 0.1) {
+    //
+    std::vector<double> timesteps;
+    double logtstart = 2.0, logtend = 4.0, logtstep = 0.1;
+    double time = 0.0;
+    for (double logtime = logtstart; logtime < logtend + 0.1 * logtstep;
+         logtime += logtstep) {
+        double dtyr = pow(10.0, logtime) - time;
+        timesteps.push_back(dtyr);
+        time += dtyr;
+    }
+    //
+
+    double dtyr = 0.0, curtime = 0.0;
+
+    // write the initial abundances
+    for (int isys = 0; isys < nsystem; isys++) {
+        fwrite((double *)&isys, sizeof(double), 1, fbin);
+        fwrite(&curtime, sizeof(double), 1, fbin);
+        fwrite(&y[isys * NEQUATIONS], sizeof(double), NEQUATIONS, fbin);
+
+        fprintf(ftxt, "%13.7e ", (double)isys);
+        fprintf(ftxt, "%13.7e ", curtime);
+        for (int j = 0; j < NEQUATIONS; j++) {
+            fprintf(ftxt, "%13.7e ", y[isys * NEQUATIONS + j]);
+        }
+        fprintf(ftxt, "\n");
+    }
+    for (auto step = timesteps.begin(); step != timesteps.end(); step++) {
 #ifdef NAUNET_DEBUG
         // EvalRates only receive one system as input, disabled in parallel test
         // EvalRates(rates, y, data);
@@ -99,45 +133,36 @@ int main() {
         // fprintf(rtxt, "\n");
 #endif
 
-        dtyr = pow(10.0, logtime) - time;
+        //
+        //
 
-        for (int isys = 0; isys < nsystem; isys++) {
-            fwrite((double *)&isys, sizeof(double), 1, fbin);
-            fwrite(&time, sizeof(double), 1, fbin);
-            fwrite(&y[isys * NEQUATIONS], sizeof(double), NEQUATIONS, fbin);
-
-            fprintf(ftxt, "%13.7e ", (double)isys);
-            fprintf(ftxt, "%13.7e ", time);
-            for (int j = 0; j < NEQUATIONS; j++) {
-                fprintf(ftxt, "%13.7e ", y[isys * NEQUATIONS + j]);
-            }
-            fprintf(ftxt, "\n");
-        }
+        dtyr = *step;
 
         Timer timer;
         timer.start();
         naunet.Solve(y, dtyr * spy, data);
         timer.stop();
 
-        time += dtyr;
+        curtime += dtyr;
+
+        // write the abundances after each step
+        for (int isys = 0; isys < nsystem; isys++) {
+            fwrite((double *)&isys, sizeof(double), 1, fbin);
+            fwrite(&curtime, sizeof(double), 1, fbin);
+            fwrite(&y[isys * NEQUATIONS], sizeof(double), NEQUATIONS, fbin);
+
+            fprintf(ftxt, "%13.7e ", (double)isys);
+            fprintf(ftxt, "%13.7e ", curtime);
+            for (int j = 0; j < NEQUATIONS; j++) {
+                fprintf(ftxt, "%13.7e ", y[isys * NEQUATIONS + j]);
+            }
+            fprintf(ftxt, "\n");
+        }
 
         // float duration = (float)timer.elapsed() / 1e6;
         double duration = timer.elapsed();
         fprintf(ttxt, "%8.5e \n", duration);
-        printf("Time = %13.7e yr, elapsed: %8.5e sec\n", time, duration);
-    }
-
-    for (int isys = 0; isys < nsystem; isys++) {
-        fwrite((double *)&isys, sizeof(double), 1, fbin);
-        fwrite(&time, sizeof(double), 1, fbin);
-        fwrite(&y[isys * NEQUATIONS], sizeof(double), NEQUATIONS, fbin);
-
-        fprintf(ftxt, "%13.7e ", (double)isys);
-        fprintf(ftxt, "%13.7e ", time);
-        for (int j = 0; j < NEQUATIONS; j++) {
-            fprintf(ftxt, "%13.7e ", y[isys * NEQUATIONS + j]);
-        }
-        fprintf(ftxt, "\n");
+        printf("Time = %13.7e yr, elapsed: %8.5e sec\n", curtime, duration);
     }
 
     fclose(fbin);
@@ -150,6 +175,7 @@ int main() {
 
     if (naunet.Finalize() == NAUNET_FAIL) {
         printf("Finalize Fail\n");
+        return 1;
     }
 
     delete[] data;

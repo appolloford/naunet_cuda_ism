@@ -2,10 +2,26 @@ set(
     OBJTARGETS
         naunet_constants
         naunet_physics
+        naunet_renorm
         naunet_rates
         naunet_fex
         naunet_jac
 )
+
+# check enabled languages
+get_property(
+    languages
+        GLOBAL
+            PROPERTY ENABLED_LANGUAGES
+)
+
+# Functions from Numerical Recipes, not suppport GPU yet.
+if(NOT "CUDA" IN_LIST languages)
+    list(
+        APPEND OBJTARGETS
+            naunet_utilities
+    )
+endif()
 
 foreach(name ${OBJTARGETS})
     add_library(
@@ -20,10 +36,9 @@ foreach(name ${OBJTARGETS})
     )
     target_include_directories(
         ${name}
-            PRIVATE
-                ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}
             PUBLIC
                 ${CMAKE_SOURCE_DIR}/include
+                ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}
     )
     target_link_libraries(
         ${name}
@@ -49,8 +64,6 @@ if(MAKE_SHARED)
     )
     target_include_directories(
         naunet_shared
-            PRIVATE
-                ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}
             PUBLIC
                 ${CMAKE_SOURCE_DIR}/include
     )
@@ -84,8 +97,6 @@ if(MAKE_STATIC)
     )
     target_include_directories(
         naunet_static
-            PRIVATE
-                ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}
             PUBLIC
                 ${CMAKE_SOURCE_DIR}/include
     )
@@ -108,7 +119,7 @@ if(MAKE_PYTHON)
     FetchContent_Declare(
         pybind11_sources
         GIT_REPOSITORY https://github.com/pybind/pybind11.git
-        GIT_TAG v2.6.2
+        GIT_TAG v2.11.1
     )
     FetchContent_GetProperties(pybind11_sources)
     if(NOT pybind11_sources_POPULATED)
@@ -137,8 +148,6 @@ if(MAKE_PYTHON)
         ${PYMODNAME}
             PUBLIC
                 ${CMAKE_SOURCE_DIR}/include
-            PRIVATE
-                ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}
     )
 
     target_link_libraries(
